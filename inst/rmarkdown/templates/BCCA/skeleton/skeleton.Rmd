@@ -11,7 +11,7 @@ author:
   othernames: Genghis
   title: Mr
   qualifications: BA, BComm, BCompSci, BLaw
-department: Department of\newline Econometrics &\newline Business Statistics
+department: Bi-National Colorectal Cancer Audit
 organization: Acme Corporation
 bibliography: references.bib
 biblio-style: authoryear-comp
