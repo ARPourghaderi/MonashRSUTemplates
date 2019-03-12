@@ -51,6 +51,16 @@ report <- function(...) {
 
 #' @rdname letter
 #' @export
+BCCA <- function(...) {
+  template <- system.file("rmarkdown/templates/BCCA/resources/monashreport.tex",
+    package="MonashEBSTemplates")
+  bookdown::pdf_document2(...,
+    template = template
+  )
+}
+
+#' @rdname letter
+#' @export
 memo <- function(...) {
   template <- system.file("rmarkdown/templates/Memo/resources/monashmemo.tex",
                           package="MonashEBSTemplates")
