@@ -1,4 +1,4 @@
-Package: MonashEBSTemplates
+Package: MonashRSUTemplates
 Version: 0.2
 Title: Monash EBS Rmarkdown Templates
 Description: This package provides Rmarkdown templates for use at Monash University, Department of Econometrics & Business Statistics.

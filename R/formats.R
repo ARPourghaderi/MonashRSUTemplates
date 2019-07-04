@@ -12,7 +12,7 @@
 #' @export
 letter <- function(...) {
   template <- system.file("rmarkdown/templates/Letter/resources/monashletter.tex",
-                          package="MonashEBSTemplates")
+                          package="MonashRSUTemplates")
    bookdown::pdf_document2(...,
      template = template
    )
@@ -43,7 +43,7 @@ workingpaper <- function(...) {
 #' @export
 report <- function(...) {
   template <- system.file("rmarkdown/templates/Report/resources/monashreport.tex",
-                          package="MonashEBSTemplates")
+                          package="MonashRSUTemplates")
   bookdown::pdf_document2(...,
                           template = template
   )
@@ -53,7 +53,7 @@ report <- function(...) {
 #' @export
 BCCA <- function(...) {
   template <- system.file("rmarkdown/templates/BCCA/resources/monashreport.tex",
-    package="MonashEBSTemplates")
+    package="MonashRSUTemplates")
   bookdown::pdf_document2(...,
     template = template
   )
@@ -63,7 +63,7 @@ BCCA <- function(...) {
 #' @export
 memo <- function(...) {
   template <- system.file("rmarkdown/templates/Memo/resources/monashmemo.tex",
-                          package="MonashEBSTemplates")
+                          package="MonashRSUTemplates")
   bookdown::pdf_document2(...,
                           citation_package = 'biblatex',
                           template = template
