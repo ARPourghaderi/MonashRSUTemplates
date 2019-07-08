@@ -1,8 +1,8 @@
 Package: MonashRSUTemplates
-Version: 0.2
-Title: Monash EBS Rmarkdown Templates
-Description: This package provides Rmarkdown templates for use at Monash University, Department of Econometrics & Business Statistics.
-Authors@R: person("Rob", "Hyndman", , "Rob.Hyndman@monash.edu", c("aut", "cre"))
+Version: 0.1
+Title: Monash RSU Rmarkdown Templates
+Description: This package provides Rmarkdown templates Monash RSR (modified from MonashEBSTemplates, https://github.com/robjhyndman/MonashEBSTemplates) and provides Rmarkdown templates for use at Monash University, Registry Science and Research Unit.
+Authors@R: person("Farhad", "Salimi", , "Farhad.Salimi@monash.edu", c("aut", "cre"))
 Imports: bookdown, binb (>= 0.0.3)
 License: GPL-3
 Encoding: UTF-8
