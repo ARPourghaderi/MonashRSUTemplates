@@ -22,7 +22,7 @@ letter <- function(...) {
 #' @export
 exam <- function(...) {
   template <- system.file("rmarkdown/templates/Exam/resources/examtemplate.tex",
-                          package="MonashEBSTemplates")
+                          package="MonashRSUTemplates")
   bookdown::pdf_document2(...,
                           template = template
   )
@@ -32,7 +32,7 @@ exam <- function(...) {
 #' @export
 workingpaper <- function(...) {
   template <- system.file("rmarkdown/templates/WorkingPaper/resources/monashwp.tex",
-                          package="MonashEBSTemplates")
+                          package="MonashRSUTemplates")
   bookdown::pdf_document2(...,
                           template = template
   )
@@ -52,7 +52,7 @@ report <- function(...) {
 #' @rdname letter
 #' @export
 BCCA <- function(...) {
-  template <- system.file("rmarkdown/templates/BCCA/resources/monashreport.tex",
+  template <- system.file("rmarkdown/templates/BCCA/resources/BCCAreport.tex",
     package="MonashRSUTemplates")
   bookdown::pdf_document2(...,
     template = template

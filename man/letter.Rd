@@ -5,6 +5,7 @@
 \alias{exam}
 \alias{workingpaper}
 \alias{report}
+\alias{BCCA}
 \alias{memo}
 \alias{slides}
 \title{Output formats for Monash EBS documents}
@@ -16,6 +17,8 @@ exam(...)
 workingpaper(...)
 
 report(...)
+
+BCCA(...)
 
 memo(...)
 
