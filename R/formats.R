@@ -20,59 +20,11 @@ letter <- function(...) {
 
 #' @rdname letter
 #' @export
-exam <- function(...) {
-  template <- system.file("rmarkdown/templates/Exam/resources/examtemplate.tex",
-                          package="MonashRSUTemplates")
-  bookdown::pdf_document2(...,
-                          template = template
-  )
-}
-
-#' @rdname letter
-#' @export
-workingpaper <- function(...) {
-  template <- system.file("rmarkdown/templates/WorkingPaper/resources/monashwp.tex",
-                          package="MonashRSUTemplates")
-  bookdown::pdf_document2(...,
-                          template = template
-  )
-}
-
-
-#' @rdname letter
-#' @export
-report <- function(...) {
-  template <- system.file("rmarkdown/templates/Report/resources/monashreport.tex",
-                          package="MonashRSUTemplates")
-  bookdown::pdf_document2(...,
-                          template = template
-  )
-}
-
-#' @rdname letter
-#' @export
 BCCA <- function(...) {
   template <- system.file("rmarkdown/templates/BCCA/resources/BCCAreport.tex",
     package="MonashRSUTemplates")
   bookdown::pdf_document2(...,
     template = template
   )
-}
-
-#' @rdname letter
-#' @export
-memo <- function(...) {
-  template <- system.file("rmarkdown/templates/Memo/resources/monashmemo.tex",
-                          package="MonashRSUTemplates")
-  bookdown::pdf_document2(...,
-                          citation_package = 'biblatex',
-                          template = template
-  )
-}
-
-#' @rdname letter
-#' @export
-slides <- function(...) {
-  binb::monash(...)
 }
 

@@ -1,50 +1,144 @@
 ---
-unitcode: ETCXXXX
-title: "Advanced Bean Counting"
-clayton: true
-caulfield: false
-duration: 2 hours writing time
-reading: 10 minutes
-semester: Semester One 2017
-examperiod: Examination Period
-openbook: false
-calculators: true
-output: 
-  MonashRSUTemplates::exam:
-    fig_caption: true
-    fig_height: 3.7
-    fig_width: 6
-    highlight: tango
+params:
+ report_year: 2019
+ hospital_code: "DF"
+ hospital_name: "Test hospital"
+ 
+title: "Clinical Quality Report  \n &nbsp;  \n 2018  \n &nbsp;  \n  `r params$hospital_name`"
+author:
+- familyname: BCCA Operations Committee
+  othernames:  by
+  title: Reviewed   
+  qualifications: on 1 July 2019
+  email: bcca@cczanz.org
+  correspondingauthor: true
+#- familyname: Khan
+# othernames: Genghis
+#   title: Mr
+#   qualifications: BA, BComm, BCompSci, BLaw
+  
+department: Bi-National Colorectal Cancer Audit
+#organization: Acme Corporation
+bibliography: references.bib
+biblio-style: authoryear-comp
+linestretch: 1.5
+output:
+  MonashEBSTemplates::BCCA:
+    fig_caption: yes
+    fig_height: 4
+    fig_width: 8
     includes:
       in_header: preamble.tex
+    keep_tex: no
+    number_sections: yes
+    citation_package: biblatex
+    toc: true
+
+
 ---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(cache = TRUE, echo = FALSE, message = FALSE, warning = FALSE, error = TRUE)
+options(knitr.table.format = "latex")
 
+#if (!require("pacman")) install.packages("pacman")
+list.of.packages <- c("pacman")
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+if(length(new.packages)) install.packages(new.packages)
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, cache=TRUE)
-library(fpp2)
+pacman::p_load(
+  ggplot2, purrr, tibble, dplyr, tidyr, stringr, readr, forcats,
+  conflicted,
+  lubridate, scales, funnelR, broom, naniar, viridis,
+  here, knitr, kableExtra, janitor, stringr, glue)
+
+theme_set(theme_light(base_family = "serif"))
+
+usepackage_latex("booktabs")
+usepackage_latex("longtable")
+usepackage_latex("array")
+usepackage_latex("multirow")
+usepackage_latex("xcolor", "table")
+usepackage_latex("wrapfig")
+usepackage_latex("float")
+usepackage_latex("colortbl")
+usepackage_latex("pdflscape")
+usepackage_latex("tabu")
+usepackage_latex("threeparttable")
+usepackage_latex("threeparttablex")
+usepackage_latex("ulem", "normalem")
+usepackage_latex("makecell")
+usepackage_latex("textcomp")
 ```
 
-**The exam contains FIVE questions. ALL questions must be answered. The exam is worth 100 marks in total.**
+```{r}
+##import
+bcca_data <- 
+  here::here(glue("produced_data/bcca_{params$report_year}.rds")) %>%
+  read_rds()
 
-\vspace*{2cm}
+##make funnel years
+funnel_years <- glue("{params$report_year - 3} - {params$report_year - 1}")
+```
 
+\newpage
+# Data analyses
+```{r}
+df <- 
+  bcca_data %>%
+  dplyr::filter(surgery_year > params$report_year-4) %>%
+  distinct(patient_id, treatment_episode_id, .keep_all = TRUE) %>%
+  dplyr::filter(surgery_planned == 1) %>%
+  group_by(hospital_code, sort = TRUE) %>%
+  mutate(number_of_surgeries_at_this_hospital = n()) %>%
+  ungroup() %>%
+  mutate(
+    hospital_code_lumped = if_else(
+      number_of_surgeries_at_this_hospital < 10, "ZZ", hospital_code)) %>%
+  group_by(hospital_code_lumped) %>%
+  summarise(
+    n_surgeries = n())
 
-# 
+df_los <-
+  bcca_data %>%
+  dplyr::filter(surgery_year > params$report_year-4) %>%
+  distinct(patient_id, treatment_episode_id, .keep_all = TRUE) %>%
+  dplyr::filter(surgery_planned == 1) %>%
+  drop_na(length_of_stay) %>%
+  mutate(los_cat = if_else(length_of_stay <= 30, "<=30", ">30"))
 
-Show that the following expression is the MLE for the variance assuming a Gaussian distribution.
-$$ \hat{\sigma}^2 = \frac{1}{n} \sum_{i=1}^n (x_i-\bar{x})^2$$
+los_below30_percent <- 
+  df_los %>%
+  count(los_cat) %>%
+  mutate(
+    percent = percent(round(n/sum(n), digits = 2))
+    ) %>%
+  dplyr::filter(los_cat == "<=30") %>%
+  pull(percent) 
 
-\marks{20}
+df_ln <-
+  bcca_data %>%
+  dplyr::filter(surgery_year > params$report_year - 4) %>%
+  distinct(patient_id, treatment_episode_id, tumour_site, lymph_nodes_harvested,
+           .keep_all = TRUE) %>%
+  dplyr::filter(surgery_planned == 1,
+                cancer_type == "Colon",
+                !is.na(lymph_nodes_harvested)) %>%
+  mutate(ln_cat = if_else(lymph_nodes_harvested <= 40, "<=40", ">40"))
 
-# 
+ln_below_40 <- 
+  df_ln %>%
+  count(ln_cat) %>%
+  mutate(
+    percent = percent(round(n/sum(n), 2))
+    ) %>%
+  dplyr::filter(ln_cat == "<=40") %>%
+  pull(percent)
 
-Second question.
+```
 
-(a)
+Three year (`r params$report_year-3` - `r params$report_year-1`) data was used to generate funnel plots as this period would provide us with enough power and recency of information. Funnel plot is a visual representation of how individual units fare compared to their peers and the overall average; it also identifies those who are performing better or worse than the average. The funnel plot contours represent two standard deviations (95% control limits) and three standard deviations (99.8% control limits) from the mean, those above and below these lines are considered outliers, with a 5% and 0.2% chance of a false positive. In the preparation of funnel plots all units of less than 10 surgeries were grouped in a single group (patients in all, labelled group ZZ). Including the ZZ group, there were `r nrow(df)` units analysed.  For the `r nrow(df)` units the median number of patients was `r median(df$n_surgeries)`, mean `r round(mean(df$n_surgeries))`, with a range from `r min(df$n_surgeries)` surgeries to a maximum of `r comma(max(df$n_surgeries))` surgeries.
 
-    Part a. \marks{4}
+Some of the funnel plots present unadjusted crude rate or mean while others (where noted) are risk-adjusted. Risk-adjustment considers differences in patient-level risk-factors; it enables adjustment for confounding variables which are beyond the control of the surgeon or healthcare system. The risk-adjustment models were revised in December 2018, which included both statistical and clinical considerations. The variables used in the risk adjustment model are noted under each graph. Clinical input identified the following risk factors: age, sex, ASA grade, urgency of surgery, cancer type and tumour stage. Statistical modelling including the likelihood ratio test was used to identify multivariate and independently significant risk factors. A separate category for missing data was created and included in the model. Due to potentital bias in interpretation, units with less than 20% of complete data on endpoint and risk factors were not included in the risk adjusted funnel plots. 
 
-(b) More stuff. \marks{10}
+For length of hospital stay (LOS), we excluded LOS <= 0 and > 30 days as these were deemed clinically unlikely and potential data entry errors. This resulted in `r los_below30_percent` of all data submitted included in the analysis. This approach was also applied to the lymph node data, with the highest figure of 40 as cutoff as this represents `r ln_below_40` of all data submitted.
 
-(c) Final part. \marks{6}

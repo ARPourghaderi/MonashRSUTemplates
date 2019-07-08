@@ -2,27 +2,12 @@
 % Please edit documentation in R/formats.R
 \name{letter}
 \alias{letter}
-\alias{exam}
-\alias{workingpaper}
-\alias{report}
 \alias{BCCA}
-\alias{memo}
-\alias{slides}
 \title{Output formats for Monash EBS documents}
 \usage{
 letter(...)
 
-exam(...)
-
-workingpaper(...)
-
-report(...)
-
 BCCA(...)
-
-memo(...)
-
-slides(...)
 }
 \arguments{
 \item{\dots}{Arguments passed to \code{\link[bookdown]{pdf_document2}}.}
