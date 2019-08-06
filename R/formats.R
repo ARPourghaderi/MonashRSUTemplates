@@ -28,3 +28,13 @@ BCCA <- function(...) {
   )
 }
 
+#' @rdname letter
+#' @export
+ANDA <- function(...) {
+  template <- system.file("rmarkdown/templates/ANDA/resources/ANDAreport.tex",
+                          package="MonashRSUTemplates")
+  bookdown::pdf_document2(...,
+                          template = template
+  )
+}
+

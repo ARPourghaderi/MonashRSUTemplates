@@ -1,0 +1,99 @@
+---
+params:
+ report_year: 2017
+ site_code: "012"
+
+title: "Australian National Diabetes Audit \n &nbsp;  \n Australian Quality Clinical Audit  \n &nbsp;  \n `r params$report_year`  \n &nbsp;  \n  Site Report: `r params$site_code`"
+#author:
+#- familyname: BCCA Operations Committee
+#  othernames:  by
+#  title: Reviewed   
+#  qualifications: on 1 July 2019
+#  email: bcca@cczanz.org
+#  correspondingauthor: true
+#- familyname: Khan
+# othernames: Genghis
+#   title: Mr
+#   qualifications: BA, BComm, BCompSci, BLaw
+  
+department: Australian National Diabetes Audit
+#organization: Acme Corporation
+bibliography: references.bib
+biblio-style: authoryear-comp
+linestretch: 1.5
+output:
+  MonashRSUTemplates::ANDA:
+    fig_caption: yes
+    fig_height: 4
+    fig_width: 8
+    includes:
+      in_header: preamble.tex
+    keep_tex: no
+    number_sections: yes
+    citation_package: biblatex
+    toc: true
+
+
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(cache = TRUE, echo = FALSE, message = FALSE, warning = FALSE, error = TRUE)
+options(knitr.table.format = "latex")
+
+#if (!require("pacman")) install.packages("pacman")
+list.of.packages <- c("pacman")
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+if(length(new.packages)) install.packages(new.packages)
+
+pacman::p_load(
+  ggplot2, purrr, tibble, dplyr, tidyr, stringr, readr, forcats,
+  conflicted,
+  lubridate, scales, funnelR, broom, naniar, viridis,
+  here, knitr, kableExtra, janitor, stringr, glue)
+
+theme_set(theme_light(base_family = "serif"))
+
+usepackage_latex("booktabs")
+usepackage_latex("longtable")
+usepackage_latex("array")
+usepackage_latex("multirow")
+usepackage_latex("xcolor", "table")
+usepackage_latex("wrapfig")
+usepackage_latex("float")
+usepackage_latex("colortbl")
+usepackage_latex("pdflscape")
+usepackage_latex("tabu")
+usepackage_latex("threeparttable")
+usepackage_latex("threeparttablex")
+usepackage_latex("ulem", "normalem")
+usepackage_latex("makecell")
+usepackage_latex("textcomp")
+```
+
+# Acknowledgements
+ANDA‐AQCA 2017 has been supported by funding from the Australian Government Department of Health.
+
+**ANDA Project Executive** 
+
+Professor Sophia Zoungas ‐ Project Lead   
+Dr Anthony Pease ‐ Diabetes Clinical and Research Fellow  
+Mr Sanjeeva Ranasinha ‐ Biostatistician   
+A/Professor Arul Earnest ‐ Senior Biostatistician   
+Ms Trieu‐Anh Truong ‐ Data Management Officer   
+Ms Eleanor Danek ‐ BMedSci student  
+Ms Elspeth Lilburn ‐ ANDA Secretariat   
+Ms Natalie Wischer ‐ NADC CEO   
+A/Professor Sofianos Andrikopoulos ‐ ADS CEO   
+
+**ANDA Scientific Advisory Committee**   
+Professor Sophia Zoungas ‐ Chair  
+A/Professor Wendy Davis   
+A/Professor Barbora deCourten   
+Professor Jeff Flack    
+Professor Jenny Gunton   
+Ms Gloria Kilmartin   
+Ms Roisine Warwick   
+Ms Natalie Wischer   
+A/Professor Jencia Wong    
+
+We would like to thank the participating diabetes centres and patients for their time and generous
+contribution to this work.
