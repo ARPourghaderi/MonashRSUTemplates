@@ -69,6 +69,31 @@ theme_set(theme_light(base_family = "serif"))
 # usepackage_latex("textcomp")
 ```
 
+
+|       |                                      |
+|-------|--------------------------------------|
+| ACE   | Angiotensin converting enzyme        |
+| ANDA  | Australian National Diabetes Audit   |
+| AQCA  | Australian Quality Clinical Audit    |
+| AT2   | Angiotensin II                       |
+| BMI   | Body mass index                      |
+| BP    | Blood pressure                       |
+| CABG  | Coronary artery bypass graft         |
+| DVA   | Department of Veterans Affairs       |
+| eGFR  | Estimated glomerular filtration rate |
+| GDM   | Gestational diabetes mellitus        |
+| HbA1c | Glycated haemoglobin                 |
+| HDL   | High density lipoprotein             |
+| IQR   | Interquartile range                  |
+| LDL   | Low-density lipoprotein              |
+| NADC  | National Australian Diabetes Centres |
+| NDSS  | National Diabetes Services Scheme    |
+| SD    | Standard deviation                   |
+| T1DM  | Type 1 diabetes mellitus             |
+| T2DM  | Type 2 diabetes mellitus             |
+
+Table: Abbreviations and Acronyms
+
 # Acknowledgements
 ANDA‐AQCA 2017 has been supported by funding from the Australian Government Department of Health.
 
