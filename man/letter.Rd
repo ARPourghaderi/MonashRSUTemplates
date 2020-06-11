@@ -4,6 +4,7 @@
 \alias{letter}
 \alias{BCCA}
 \alias{ANDA}
+\alias{ANDAAQSMA}
 \title{Output formats for Monash EBS documents}
 \usage{
 letter(...)
@@ -11,6 +12,8 @@ letter(...)
 BCCA(...)
 
 ANDA(...)
+
+ANDAAQSMA(...)
 }
 \arguments{
 \item{\dots}{Arguments passed to \code{\link[bookdown]{pdf_document2}}.}

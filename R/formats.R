@@ -38,3 +38,12 @@ ANDA <- function(...) {
   )
 }
 
+#' @rdname letter
+#' @export
+ANDAAQSMA <- function(...) {
+  template <- system.file("rmarkdown/templates/ANDAAQSMA/resources/ANDAAQSMAreport.tex",
+    package="MonashRSUTemplates")
+  bookdown::pdf_document2(...,
+    template = template
+  )
+}
