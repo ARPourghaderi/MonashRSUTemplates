@@ -21,6 +21,8 @@ department: Australian National Diabetes Audit
 bibliography: references.bib
 biblio-style: authoryear-comp
 linestretch: 1.5
+header-includes:
+      - \usepackage{ragged2e}
 output:
   MonashRSUTemplates::ANDA:
     fig_caption: yes

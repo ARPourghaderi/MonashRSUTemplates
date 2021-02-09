@@ -4,6 +4,8 @@ params:
  site_code: "012"
 
 title: "Australian National Diabetes Audit \n &nbsp;  \n Australian Quality Clinical Audit  \n &nbsp;  \n `r params$report_year`  \n &nbsp;  \n  Site Report: `r params$site_code`"
+header-includes:
+   - \usepackage{ragged2e}
 #author:
 #- familyname: BCCA Operations Committee
 #  othernames:  by

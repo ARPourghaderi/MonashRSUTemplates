@@ -1,0 +1,134 @@
+---
+params:
+ report_year: 2019
+ site_name: "prince charles hospital"
+
+title: "ACFDR SITE REPORT \n &nbsp;    \n `r params$report_year`  \n &nbsp;  \n   `r stringr::str_to_upper(params$site_name)`"
+header-includes:
+   - \usepackage{ragged2e}
+#author:
+#- familyname: BCCA Operations Committee
+#  othernames:  by
+#  title: Reviewed   
+#  qualifications: on 1 July 2019
+#  email: bcca@cczanz.org
+#  correspondingauthor: true
+#- familyname: Khan
+# othernames: Genghis
+#   title: Mr
+#   qualifications: BA, BComm, BCompSci, BLaw
+  
+department: ACFDR Coordinating Centre (Monash University)
+#organization: Acme Corporation
+bibliography: references.bib
+biblio-style: authoryear-comp
+linestretch: 1.5
+output:
+  MonashRSUTemplates::ACFDR:
+    fig_caption: yes
+    fig_height: 4
+    fig_width: 8
+    includes:
+      in_header: preamble.tex
+    keep_tex: no
+    number_sections: yes
+    citation_package: biblatex
+    toc: true
+
+
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(cache = TRUE, echo = FALSE, message = FALSE, warning = FALSE, error = TRUE)
+options(knitr.table.format = "latex")
+
+
+pacman::p_load(tidyverse, conflicted, fontawesome,
+               install = FALSE)
+
+theme_set(theme_light(base_family = "serif"))
+```
+
+\newpage
+# Introduction
+
+Welcome to the ACFDR `r params$report_year` centre report for `r str_to_title(params$site_name)` incorporating both comparison and site trend data.
+This year continues the new mode of presentation with minor revisions following feedback from CF centres and the ACFDR Steering Committee.
+We hope you find the new presentation interesting and valuable.
+Comments or queries on this report are welcome. Please do not hesitate to contact us.
+
+Susannah Ahern   
+Rasa Ruseckaite    
+Farhad Salimi   
+Arul Earnest    
+Marisa Caruso      
+
+**Monash University ACFDR Coordinating Team**   
+Email: med-acfdregistry@monash.edu     
+Phone: (03) 9903 1656
+
+# Interpretation of Results: Funnel Plots
+This section contains centre comparisons of lung function (FEV1% predicted) and Body Mass Index (BMI) percentile, which are presented as raw (unadjusted) data for key clinical features.
+Funnel plots are graphical tools designed to detect excessive variation in performance indicators of health outcomes.
+When interpreting funnel plots:
+
+- The horizontal axis (x-axis) shows the number of cases/patients seen at each site being examined
+- The vertical axis (y-axis) shows the mean of each quality indicator by site 
+- The overall mean across all sites is shown by the horizontal red line
+- The two contour lines above and below this red line represents the 95% and
+99.8% control limits
+- Any site crossing the 99.8% control limit may be deemed a statistical outlier and further evaluation may be necessary to identify the cause of this variation in outcome from the rest 
+- Separately we have provided funnel plots for patients homozygous for F508del
+
+# Data
+- FEV1% predicted is used for all CF centres; BMI for adult CF centres; and BMI percentiles for paediatric CF centres.
+- Age groups are based on patient age at 31 December of each reference year
+- Annual values of FEV1% predicted, BMI or BMI percentile for each patient were compiled by selecying the highest available values of the reference year. For patients who had measurements taken at more than one centre, annual values contributing to the charts and tables for each of these centres were compiled from all clinical measurements reported by any centre
+- The included population at each centre comprises patients whose status in the registry overall is current at the end of the reference year and who had clinical measurements taken at the centre and reported to the registry during that year
+- Funnel plots and time series graphs only include patients that have had lung function and BMI data provided to the registry
+- Indicator values for patients with a prior lung transplant have been excluded.
+- Clinical measurements for patients who have had a lung transplant are excluded for all measurement dates after their transplant
+- The outcome measure in lung function plots is FEV1 which is FEV1% predicted adjusted for age, gender and height, so further adjustment was not performed
+- Graphs drawn in R 3.6 (R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.)
+
+\newpage
+# Abbreviations and Acronyms
+|      |                                                       |
+|------|-------------------------------------------------------|
+| FEV1 | Forced expiratory volume in the 1st second            |
+| FEV1%| Forced expiratory volume in the 1st second % predicted|
+| BMI  | Body Mass Index                                       |
+| BMI% | Body Mass Index percentile                            |
+
+# People with Cystic Fibrosis
+# Number of new Patients in `r params$report_year`
+# Genotype
+# FEV centre trend and comparison
+# BMI centre trend and comparison 
+# Clinic visits
+
+# Registry Steering Committee Membership
+| Members                |  Role/Specialisation                    | Institution/Association               |
+|------------------------|-----------------------------------------|---------------------------------------|
+| Prof Susannah Ahern    | Coordinating Investigator/Academic Lead | Monash University, VIC                |
+| Prof Scott Bell        | Clinical Lead ACFDR/ CF Physician       | The Prince Charles Hospital, QLD      |
+| Prof Claire Wainwright | CF Physician – Paediatrics              | Lady Cilento Children’s Hospital, QLD |
+| Dr Andre Schultz       | CF Physician – Paediatrics              | Perth Children’s Hospital, WA         |
+| Prof Peter Wark        | CF Physician – Adults                   | John Hunter Hospital, NSW             |
+| A/Prof Peter Middleton | CF Physician – Adults                   | Westmead Hospital, NSW                |
+| A/Profe Tom Kotsimbos  | CF Physician – Adults                   | Alfred Health, VIC                    |
+| Ms Nettie Burke        | CEO                                     | Cystic Fibrosis Australia             |
+| Dr Rasa Ruseckaite     | Data Manager – ACFDR                    | Monash University, VIC                |
+| Dr Susannah King       | Dietitian                               | Alfred Hospital, VIC                  |
+| Ms Lucy Keatley        | CF Clinical Nurse Consultant            | Westmead Hospital, NSW                |
+| Ms Morgan Gollan       | Consumer Representative                 | NSW                                   |
+
+# ACFDR Coordinating Centre, Monash University
+The ACFDR coordinating team encourages contact regarding all Registry related activities and operations, including access to data through the email role account below
+
+Email: med-acfdregistry@monash.edu  
+Registry Academic Lead: Prof Susannah Ahern    
+Registry Data Manager: Dr Rasa Ruseckaite   
+Registry Data Analyst: Dr Farhad Salimi   
+Registry Coordinator: Marisa Caruso    
+Phone: (03) 9903 1656   
+Webpage: https://www.cysticfibrosis.org.au/dataregistry   

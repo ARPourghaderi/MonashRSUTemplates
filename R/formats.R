@@ -47,3 +47,13 @@ ANDAAQSMA <- function(...) {
     template = template
   )
 }
+
+#' @rdname letter
+#' @export
+ACFDR <- function(...) {
+  template <- system.file("rmarkdown/templates/ACFDR/resources/ACFDRreport.tex",
+                          package="MonashRSUTemplates")
+  bookdown::pdf_document2(...,
+                          template = template
+  )
+}
