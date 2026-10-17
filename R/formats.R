@@ -50,10 +50,41 @@ ANDAAQSMA <- function(...) {
 
 #' @rdname letter
 #' @export
-ACFDR <- function(...) {
-  template <- system.file("rmarkdown/templates/ACFDR/resources/ACFDRreport.tex",
-                          package="MonashRSUTemplates")
-  bookdown::pdf_document2(...,
-                          template = template
+#' @rdname letter
+#' @export
+ACFDR <- function(..., pandoc_args = NULL) {
+
+  template <- system.file(
+    "rmarkdown/templates/ACFDR/resources/ACFDRreport.tex",
+    package = "MonashRSUTemplates"
+  )
+
+  logo <- system.file(
+    "rmarkdown/templates/ACFDR/skeleton/ACFDRlogo.pdf",
+    package = "MonashRSUTemplates"
+  )
+
+  if (!nzchar(template) || !file.exists(template)) {
+    stop("ACFDRreport.tex could not be found in MonashRSUTemplates.")
+  }
+
+  if (!nzchar(logo) || !file.exists(logo)) {
+    stop("ACFDRlogo.pdf could not be found in MonashRSUTemplates.")
+  }
+
+  logo <- normalizePath(
+    logo,
+    winslash = "/",
+    mustWork = TRUE
+  )
+
+  bookdown::pdf_document2(
+    ...,
+    template = template,
+    pandoc_args = c(
+      pandoc_args,
+      "--variable",
+      paste0("acfdrlogo=", logo)
+    )
   )
 }
